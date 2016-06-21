@@ -1,0 +1,19 @@
+language: csharp
+mono:
+  - latest
+
+solution: PZLogger.NET.sln
+
+before_install:
+  - git submodule update --init --recursive
+  
+install:
+  - nuget restore PZLogger.NET.sln
+  
+script:
+  - xbuild /p:Configuration=Release PZLogger.NET.sln
+  - xbuild /p:Configuration=Debug PZLogger.NET.sln
+
+notifications:
+  email:
+    on_success: always
