@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PZLogger.NET", "PZLogger.NET\PZLogger.NET.csproj", "{269A073E-9041-4537-BA84-3525366A2D7A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PZLogger.NET", "PZLogger.NET.csproj", "{269A073E-9041-4537-BA84-3525366A2D7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
