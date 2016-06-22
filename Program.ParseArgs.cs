@@ -33,7 +33,7 @@ namespace PZLogger.NET
                     .Add("fps=", "{FPS} of the console, integer.", fps => FastConsole.ScreenFPS = int.Parse(fps))
                     .Add("s|silent", "enables silent mode.", SilentMode)
                     .Add("m|minimize", "enables minimize mode.", MinimizeMode)
-                    .Add("cf|config=", "used {CONFIG_WRAPPER}.", ParseConfig)
+                    .Add("config=", "used {CONFIG_TYPE}. Use YAML or JSON", ParseConfig)
                     .Add("h|help", "show help.", str => ShowHelp(options));
 
                 options.Parse(args);
