@@ -15,7 +15,7 @@ namespace PZLogger.NET
     {
         public static LogFile Create(string path, MySqlConnection connection)
         {
-            var name = System.IO.Path.GetFileNameWithoutExtension(path)?.ToLower();
+            var name = System.IO.Path.GetFileNameWithoutExtension(path)?.ToLowerInvariant();
             if (string.IsNullOrEmpty(name))
             {
 

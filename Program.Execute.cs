@@ -8,7 +8,7 @@ namespace PZLogger.NET
     {
         private static bool ExecuteCommand(string message)
         {
-            var command = message.Remove(0, 1).ToLower();
+            var command = message.Remove(0, 1).ToLowerInvariant();
             message = message.Remove(0, 1);
 
             if (message.StartsWith("stop"))

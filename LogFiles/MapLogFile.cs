@@ -55,7 +55,7 @@ VALUES ({data.Date}, '{data.PlayerCode}', '{data.PlayerName}', '{data.Action}', 
             var index = 4;
             for (var i = index; i < split.Count; i++)
             {
-                if(split[i].ToLower() == "at")
+                if(split[i].ToLowerInvariant() == "at")
                     break;
                 index++;
             }

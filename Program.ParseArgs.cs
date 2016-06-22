@@ -31,8 +31,8 @@ namespace PZLogger.NET
                 options = new OptionSet()
                     .Add("c|console", "enables the console.", StartFastConsole)
                     .Add("fps=", "{FPS} of the console, integer.", fps => FastConsole.ScreenFPS = int.Parse(fps))
-                    .Add("s|silent=", "enables silent mode.", SilentMode)
-                    .Add("m|minimize=", "enables minimize mode.", MinimizeMode)
+                    .Add("s|silent", "enables silent mode.", SilentMode)
+                    .Add("m|minimize", "enables minimize mode.", MinimizeMode)
                     .Add("cf|config=", "used {CONFIG_WRAPPER}.", ParseConfig)
                     .Add("h|help", "show help.", str => ShowHelp(options));
 
