@@ -20,6 +20,6 @@ PvP not supported yet.
 **Username:** Used Username  
 **Password:** Password for used Username  
 **LoggedFilePaths:**  All files that should be parsed in format:  
-\- %PATH%  
-\- %PATH%  
-\- %PATH%  
+**\- %PATH%**  
+**\- %PATH%**  
+**\- %PATH%**  
