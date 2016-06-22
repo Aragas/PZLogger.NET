@@ -10,7 +10,7 @@ PvP not supported yet.
 **--fps=** FPS of the console, integer.  
 **-s --silent** Enables silent mode.  
 **-m --minimize** Enables minimize mode.  
-**-cf --config=** Used Config(YAML, JSON).  
+**-cf --config=** Used Config(**YAML**, **JSON**).  
 **-h --help** Shows help.  
   
 ## Settings  
