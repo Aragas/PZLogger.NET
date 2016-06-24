@@ -46,7 +46,7 @@ namespace PZLogger.NET
                 return new CmdLogFile(path, connection);
             }
 
-            throw new ReportToConsoleException("Wrong file, be sure it contains 'user', 'admin', 'chat', 'item', 'map' or 'cmd'");
+            throw new ReportToConsoleException("Wrong file {0}, be sure it contains 'user', 'admin', 'chat', 'item', 'map' or 'cmd'");
         }
         private static IEnumerable<string> ReadFileLines(string path)
         {

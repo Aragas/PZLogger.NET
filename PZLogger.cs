@@ -70,7 +70,7 @@ namespace PZLogger.NET
         private void AddLogFile(string filePath)
         {
             try { LoggedFiles.Add(LogFile.Create(filePath, Connection)); }
-            catch (ReportToConsoleException e) { Console.WriteLine(e.Message); }
+            catch (ReportToConsoleException e) { Console.WriteLine(e.Message, filePath); }
         }
         private void CheckDatabase()
         {
