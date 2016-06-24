@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -59,7 +60,7 @@ namespace PZLogger.NET
         }
 
 
-        private string Path { get; }
+        public string Path { get; }
         protected string Path_DB => Path.Replace(@"\", @"\\");
 
         protected MySqlConnection Connection { get; }

@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
-
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using MySql.Data.MySqlClient;
 
 using PCLExt.Config;
+using PZLogger.NET.Exception;
 
 namespace PZLogger.NET
 {
@@ -22,6 +25,8 @@ namespace PZLogger.NET
         public string Username { get; private set; } = "";
 
         public string Password { get; private set; } = "";
+
+        public string[] LoggedDirPaths { get; private set; } = { "PathToDirectory", "PathToDirectory" };
 
         public string[] LoggedFilePaths { get; private set; } = { "PathToFile", "PathToFile" };
 
@@ -51,9 +56,21 @@ namespace PZLogger.NET
             }.GetConnectionString(true));
             Connection.Open();
 
-            foreach (var filePath in LoggedFilePaths)
-                LoggedFiles.Add(LogFile.Create(filePath, Connection));
+            if(LoggedDirPaths != null)
+                foreach (var dirPath in LoggedDirPaths)
+                    foreach (var filePath in Directory.GetFiles(dirPath))
+                        AddLogFile(filePath);
 
+            if (LoggedFilePaths != null)
+                foreach (var filePath in LoggedFilePaths)
+                    if(LoggedFiles.All(lFile => lFile.Path != filePath))
+                        AddLogFile(filePath);
+        }
+
+        private void AddLogFile(string filePath)
+        {
+            try { LoggedFiles.Add(LogFile.Create(filePath, Connection)); }
+            catch (ReportToConsoleException e) { Console.WriteLine(e.Message); }
         }
         private void CheckDatabase()
         {

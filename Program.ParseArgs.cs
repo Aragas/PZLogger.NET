@@ -40,16 +40,17 @@ namespace PZLogger.NET
             }
             catch (System.Exception ex) when (ex is OptionException || ex is FormatException)
             {
-                FastConsole.Stop();
+                if(FastConsole.Enabled)
+                    FastConsole.Stop();
 
                 Console.Write("PokeD.Server.Desktop: ");
                 Console.WriteLine(ex.Message);
                 Console.WriteLine("Try `PokeD.Server.Desktop --help' for more information.");
 
-                ShowHelp(options, true);
+                ShowHelp(options);
 
                 Console.WriteLine();
-                Console.WriteLine("Press any key to continue$(SolutionDir).");
+                Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
                 Environment.Exit((int) ExitCodes.Success);
             }
@@ -70,13 +71,7 @@ namespace PZLogger.NET
                 var winHandle = System.Diagnostics.Process.GetCurrentProcess().MainWindowHandle;
                 ShowWindow(winHandle, SW_HIDE);
             }
-            catch (DllNotFoundException)
-            {
-                if (FastConsole.Enabled)
-                    FastConsole.WriteLine("user32.dll not found, silent and minimize not available");
-                else
-                    Console.WriteLine("Usage: PZLogger.NET [OPTIONS]");
-            }
+            catch (DllNotFoundException) { Console.WriteLine("user32.dll not found, silent and minimize not available"); }
         }
         private static void MinimizeMode(string s)
         {
@@ -85,35 +80,15 @@ namespace PZLogger.NET
                 var winHandle = System.Diagnostics.Process.GetCurrentProcess().MainWindowHandle;
                 ShowWindow(winHandle, SW_SHOWMINIMIZED);
             }
-            catch (DllNotFoundException)
-            {
-                if (FastConsole.Enabled)
-                    FastConsole.WriteLine("user32.dll not found, silent and minimize not available");
-                else
-                    Console.WriteLine("Usage: PZLogger.NET [OPTIONS]");
-            }
+            catch (DllNotFoundException) { Console.WriteLine("user32.dll not found, silent and minimize not available"); }
         }
-        private static void ShowHelp(OptionSet options, bool direct = false)
+        private static void ShowHelp(OptionSet options)
         {
-            if (direct)
-            {
-                Console.WriteLine("Usage: PZLogger.NET [OPTIONS]");
-                Console.WriteLine();
-                Console.WriteLine("Options:");
+            Console.WriteLine("Usage: PZLogger.NET [OPTIONS]");
+            Console.WriteLine();
+            Console.WriteLine("Options:");
 
-                options.WriteOptionDescriptions(Console.Out);
-            }
-            else
-            {
-                FastConsole.WriteLine("Usage: PZLogger.NET [OPTIONS]");
-                FastConsole.WriteLine();
-                FastConsole.WriteLine("Options:");
-
-                var opt = new StringWriter();
-                options.WriteOptionDescriptions(opt);
-                foreach (var line in opt.GetStringBuilder().ToString().Split(new[] { Environment.NewLine }, StringSplitOptions.None))
-                    FastConsole.WriteLine(line);
-            }
+            options.WriteOptionDescriptions(Console.Out);
         }
         private static void ParseConfig(string config)
         {

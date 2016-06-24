@@ -50,7 +50,7 @@ namespace PZLogger.NET
                     var input = FastConsole.ReadLine();
 
                     if (input.StartsWith("/") && !ExecuteCommand(input))
-                        FastConsole.WriteLine("Invalid command!");
+                        Console.WriteLine("Invalid command!");
                 }
 
                 if (Logger == null || (Logger != null && Logger.IsDisposing))
